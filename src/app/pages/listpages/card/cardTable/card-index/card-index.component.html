@@ -1,0 +1,34 @@
+<!-- <ul nz-menu nzMode="horizontal">
+  <li nz-menu-item nzMatchRouter routerLink="/listPages/card/cardOne">
+    <i nz-icon nzType="mail"></i>
+    Navigation One
+  </li>
+  <li nz-menu-item nzMatchRouter routerLink="/listPages/card/cardTwo">
+    <i nz-icon nzType="appstore"></i>
+    Navigation Two
+  </li>
+</ul> -->
+
+<nz-card style="width: 100%;">
+  <nz-card-tab>
+    <nz-tabset nzSize="large" nzLinkRouter>
+      <nz-tab>
+        <a *nzTabLink nz-tab-link [routerLink]="['/listPages/card/cardOne']">
+          卡片1
+        </a>
+      </nz-tab>
+      <nz-tab>
+        <a *nzTabLink nz-tab-link [routerLink]="['/listPages/card/cardTwo']">
+          卡片2
+        </a>
+      </nz-tab>
+      <nz-tab>
+        <a *nzTabLink nz-tab-link [routerLink]="['/listPages/card/cardThree']">
+          卡片骨架屏
+        </a>
+      </nz-tab>
+    </nz-tabset>
+  </nz-card-tab>
+  <!-- content{{ index2 }} -->
+  <router-outlet></router-outlet>
+</nz-card>

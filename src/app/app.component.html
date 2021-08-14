@@ -1,0 +1,169 @@
+<nz-layout class="app-layout">
+    <nz-sider
+        class="menu-sidebar"
+        nzCollapsible
+        nzWidth="256px"
+        nzBreakpoint="md"
+        [(nzCollapsed)]="isCollapsed"
+        [nzTrigger]="null">
+        <div class="sidebar-logo">
+            <a href="https://ng.ant.design/" target="_blank">
+                <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+                <h1>Ant Design Of Angular</h1>
+            </a>
+        </div>
+        <!-- 菜单 START -->
+        <ul nz-menu nzMode="inline" nzTheme="dark" [nzInlineCollapsed]="isCollapsed">
+            <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menus }"></ng-container>
+            <ng-template #menuTpl let-menus>
+                <ng-container *ngFor="let menu of menus">
+                    <li
+                        *ngIf="!menu.children"
+                        nz-menu-item
+                        [nzPaddingLeft]="menu.level * 24"
+                        nzMatchRouter
+                        [routerLink]="menu.routerLink">
+                        <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>
+                        <span>{{ menu.title }}</span>
+                    </li>
+                    <li
+                        *ngIf="menu.children"
+                        nz-submenu
+                        [nzPaddingLeft]="menu.level * 24"
+                        nzOpen
+                        [nzTitle]="menu.title"
+                        [nzIcon]="menu.icon">
+                        <ul>
+                            <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menu.children }"></ng-container>
+                        </ul>
+                    </li>
+                </ng-container>
+            </ng-template>
+        </ul>
+        <!-- 菜单 END -->
+    </nz-sider>
+    <nz-layout>
+        <nz-header>
+            <div class="app-header">
+                <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+                    <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+                </span>
+
+                <!-- right -->
+                <div class="header-space" nz-space>
+                    <div class="head-space-item" nz-dropdown nzTrigger="click" nzPlacement="bottomRight" [nzDropdownMenu]="menu2">
+                        <nz-badge [nzCount]="2" [nzOverflowCount]="10">
+                            <i class="curpoint-sp tip-hd-icon" nz-icon nzType="bell" nzTheme="outline"></i>
+                        </nz-badge>
+                        <nz-dropdown-menu #menu2="nzDropdownMenu">
+                            <div class="ant-spin-container">
+                                <nz-card style="width: 100%;">
+                                    <nz-card-tab>
+                                        <nz-tabset nzSize="large" [(nzSelectedIndex)]="activeIndex">
+                                            <nz-tab nzTitle="tab1"></nz-tab>
+                                            <nz-tab nzTitle="tab2"></nz-tab>
+                                        </nz-tabset>
+
+                                        <nz-list *ngIf="activeIndex == 0" nzItemLayout="horizontal">
+                                            <nz-list-item *ngFor="let item of messageData">
+                                                <nz-list-item-meta
+                                                    nzAvatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                                                    nzDescription="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                                                >
+                                                    <nz-list-item-meta-title>
+                                                    <a href="https://ng.ant.design">{{ item.title }}</a>
+                                                    </nz-list-item-meta-title>
+                                                </nz-list-item-meta>
+                                            </nz-list-item>
+                                            <nz-list-empty *ngIf="messageData.length === 0"></nz-list-empty>
+                                        </nz-list>
+
+                                        <nz-list *ngIf="activeIndex == 1" nzItemLayout="vertical">
+                                            <nz-list-item *ngFor="let item of data">
+                                              <nz-list-item-meta>
+                                                <nz-list-item-meta-avatar [nzSrc]="item.avatar"></nz-list-item-meta-avatar>
+                                                <nz-list-item-meta-title>
+                                                  <a href="{{ item.href }}">{{ item.title }}</a>
+                                                </nz-list-item-meta-title>
+                                                <nz-list-item-meta-description>
+                                                  {{ item.description }}
+                                                </nz-list-item-meta-description>
+                                              </nz-list-item-meta>
+                                              {{ item.content }}
+                                              <ul nz-list-item-actions>
+                                                <nz-list-item-action>
+                                                  <i nz-icon nzType="star-o" style="margin-right: 8px;"></i>
+                                                  156
+                                                </nz-list-item-action>
+                                                <nz-list-item-action>
+                                                  <i nz-icon nzType="star-o" style="margin-right: 8px;"></i>
+                                                  156
+                                                </nz-list-item-action>
+                                                <nz-list-item-action>
+                                                  <i nz-icon nzType="star-o" style="margin-right: 8px;"></i>
+                                                  2
+                                                </nz-list-item-action>
+                                              </ul>
+                                              <nz-list-item-extra>
+                                                <img width="272" alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />
+                                              </nz-list-item-extra>
+                                            </nz-list-item>
+                                        </nz-list>
+                                    </nz-card-tab>
+                                </nz-card>
+                            </div>
+                        </nz-dropdown-menu>
+                    </div>
+                    <div class="head-space-item" nz-dropdown [nzDropdownMenu]="menu">
+                        <p class="head-ptxt curpoint-sp">
+                            <nz-avatar nzText="USER"></nz-avatar>
+                            <span>admin</span>
+                        </p>
+                        <nz-dropdown-menu #menu="nzDropdownMenu">
+                            <ul nz-menu nzSelectable>
+                                <li class="li-item" nz-menu-item>
+                                    <i nz-icon nzType="user" nzTheme="outline"></i>
+                                    <span>个人中心</span>
+                                </li>
+                              <li class="li-item" nz-menu-item>
+                                    <i nz-icon nzType="setting" nzTheme="outline"></i>
+                                    <span>个人设置</span>
+                              </li>
+                              <li class="li-item" nz-menu-item>
+                                    <i nz-icon nzType="poweroff" nzTheme="outline"></i>
+                                    <span>退出登录</span>
+                              </li>
+                            </ul>
+                        </nz-dropdown-menu>
+                    </div>
+                </div>
+            </div>
+        </nz-header>
+        <div class="ant-pro-page-container-warp">
+            <nz-breadcrumb [nzAutoGenerate]="true" [nzRouteLabel]="'title'">
+                <nz-breadcrumb-item *ngIf="isHomeBreadcrumb">
+                    <a href="javascript:;" routerLink="/home">首页</a>
+                </nz-breadcrumb-item>
+            </nz-breadcrumb>
+        </div>
+        <nz-content>
+            <div class="inner-content">
+                <router-outlet></router-outlet>
+            </div>
+        </nz-content>
+
+        <nz-drawer
+            [nzClosable]="false"
+            [nzVisible]="visible"
+            nzPlacement="right"
+            nzTitle="Basic Drawer"
+            (nzOnClose)="visible = false"
+            >
+            <ng-container *nzDrawerContent>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+            </ng-container>
+            </nz-drawer>
+    </nz-layout>
+</nz-layout>
