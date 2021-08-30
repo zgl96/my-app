@@ -1,0 +1,9 @@
+<div id="richContent"></div>
+
+<button style="margin-top: 10px;" nz-button nzType="primary" (click)="getHtml()">富文本信息</button>
+
+<nz-modal [(nzVisible)]="isVisible" [nzFooter]="null" nzTitle="富文本内容" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <div class="preview-wrap" [innerHTML]="htmlContent"></div>
+  </ng-container>
+</nz-modal>

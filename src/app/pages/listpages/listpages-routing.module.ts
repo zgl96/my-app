@@ -7,6 +7,7 @@ import { CardThreeComponent } from './card/cardTable/card-three/card-three.compo
 import { TableIndexComponent } from './table/table-index/table-index.component';
 import { TableListComponent } from './table/table-list/table-list.component';
 import { TableDetailsComponent } from './table/table-details/table-details.component';
+import { RichtextComponent } from './richtext/richtext.component';
 
 const routes: Routes = [
   {
@@ -77,6 +78,13 @@ const routes: Routes = [
       },
     ]
   },
+  {
+    path: 'richText',
+    component: RichtextComponent,
+    data: {
+      title: '富文本'
+    }
+  }
 ];
 
 @NgModule({

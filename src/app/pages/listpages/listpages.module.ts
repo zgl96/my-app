@@ -10,6 +10,7 @@ import { CardThreeComponent } from './card/cardTable/card-three/card-three.compo
 import { TableListComponent } from './table/table-list/table-list.component';
 import { TableDetailsComponent } from './table/table-details/table-details.component';
 import { TableIndexComponent } from './table/table-index/table-index.component';
+import { RichtextComponent } from './richtext/richtext.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { TableIndexComponent } from './table/table-index/table-index.component';
     CardThreeComponent,
     TableListComponent,
     TableDetailsComponent,
-    TableIndexComponent
+    TableIndexComponent,
+    RichtextComponent
   ],
   imports: [
     CommonModule,

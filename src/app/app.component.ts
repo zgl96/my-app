@@ -54,6 +54,12 @@ export class AppComponent implements OnInit {
           title: '卡片',
           icon: '',
           routerLink: '/listPages/card'
+        },
+        {
+          level: 2,
+          title: '富文本',
+          icon: '',
+          routerLink: '/listPages/richText'
         }
       ]
     }
